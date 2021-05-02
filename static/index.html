@@ -14,6 +14,11 @@
 </head>
 <body>
     <h1>Good form bad form</h1>
+    <p>There are two forms below. Each one would make a POST request to an endpoint at the server.
+        The good form would receive a redirect (HTTP 303) as a response, while the bad form would receive
+        a "created" response (HTTP 201). One concern we have when POSTing through forms is we want
+        to stop the user from accidentally POSTing the form twice, which can happen when the user messes
+        around with the backward/forward or refresh buttons in their browser.</p>
     <section id="forms-container">
         <form method="POST" action="/good-form">
             <h2>Good form</h2>
@@ -26,5 +31,18 @@
             <button type="submit">Send</button>
         </form>
     </section>
+    <p>The good form is "good" because it prevents this from happening &mdash; the "after submit" state of the web site is effectively
+        removed from the browser's history stack. With the bad form however, the "after submit" state is pushed
+        on to the browser's history stack, which means when the user reaches the "after submit" page,
+        clicking the browser refresh would cause another POST to occur. This is when the browser might try to stop the user
+        by giving them the "Confirm Form Resubmission" popup. Clicking backwards then forwards again
+        might also cause another POST to occur (or maybe the browser might automatically prevent this). Check the server logs to see this.</p>
+    <p>Where'd I hear about this? In this <a href="https://stackoverflow.com/a/1083471">SO answer</a>. This answer also mentions
+        that we'd usually go for the HTTP 303 approach only for web page POSTs, not API POSTs. For APIs, HTTP 201.
+        Another concern is we might want the user to receive some king of message to make it clear to the user that
+        the submit was successful. We could encode this within a query string, but this isn't very secure. Might have
+        to figure out another way here.</p>
+    <p>HTTP 303s are meant to indicate to the client that the redirected resource represents the final
+        state after the POST has occurred (<a href="https://httpstatuses.com/303">source</a>).</p>
 </body>
 </html>
