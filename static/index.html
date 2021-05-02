@@ -39,7 +39,7 @@
         might also cause another POST to occur (or maybe the browser might automatically prevent this). Check the server logs to see this.</p>
     <p>Where'd I hear about this? In this <a href="https://stackoverflow.com/a/1083471">SO answer</a>. This answer also mentions
         that we'd usually go for the HTTP 303 approach only for web page POSTs, not API POSTs. For APIs, HTTP 201.
-        Another concern is we might want the user to receive some king of message to make it clear to the user that
+        Another concern is we might want the user to receive some kind of message to make it clear to the user that
         the submit was successful. We could encode this within a query string, but this isn't very secure. Might have
         to figure out another way here.</p>
     <p>HTTP 303s are meant to indicate to the client that the redirected resource represents the final
