@@ -1,0 +1,12 @@
+{
+  "name": "forms",
+  "version": "1.0.0",
+  "description": "Forms experiments",
+  "main": "server.js",
+  "author": "Neil Syiemlieh",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
