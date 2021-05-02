@@ -6,7 +6,6 @@ const PORT = 5000;
 app.use(express.urlencoded())
 app.use((req, res, next) => {
     console.log(new Date().toISOString(), req.method, req.originalUrl, req.body);
-
     next();
 })
 app.use(express.static('./static'));
